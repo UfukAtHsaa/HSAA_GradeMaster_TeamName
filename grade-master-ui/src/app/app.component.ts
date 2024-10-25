@@ -1,13 +1,13 @@
+import { LayoutModule } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterOutlet } from '@angular/router';
+import { of } from 'rxjs';
 import { MenuBarComponent } from '../lib/components/menu-bar/menu-bar.component';
 import { MenuBarItem } from '../lib/components/menu-bar/menu-bar.interfaces';
-import { of } from 'rxjs';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { LayoutModule } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,7 @@ import { LayoutModule } from '@angular/cdk/layout';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'grade-master-ui';
+  title = 'GRADE MASTER';
 
   public menuItems: MenuBarItem[] = [
     {
