@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
+import { StudentProviderService } from '../provider-services/student-provider.service';
+import { Student } from '../domain/student.interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentCoreService {
 
-  students: Student[] = []
+  constructor(private providerService: StudentProviderService) { }
 
-  constructor() { }
+  getStudents(): Observable<Student[]>  {
+    return this.providerService.getAllStudents();
+  }
 
-  addStudent() {
+  addStudent(newStudent = { name: '', email: '' }) {
+    this.providerService.createStudent({...newStudent, id: 0});
+  }
 
+  getStudent(id: number): Student | undefined{
+    return this.providerService.getStudentById(id);
   }
 
 }

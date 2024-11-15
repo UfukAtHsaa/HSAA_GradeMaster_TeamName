@@ -1,4 +1,4 @@
-import { Student } from "./student.interfaces";
+import { Student } from "../components/domain/student.interfaces";
 
 export interface Course {
     id: number;

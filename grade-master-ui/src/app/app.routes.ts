@@ -69,6 +69,13 @@ export const routes: Routes = [
                 ).then((mod) => mod.StudentListComponent),
 
             },
+            { 
+                path: ':id/details', 
+                loadComponent: () =>
+                    import(
+                        './views/student/student-detail/student-detail.component'
+                    ).then((mod) => mod.StudentDetailComponent),
+            },
         ]
     },
 
