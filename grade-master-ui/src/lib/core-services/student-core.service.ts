@@ -15,10 +15,11 @@ export class StudentCoreService {
   }
 
   addStudent(newStudent = { name: '', email: '' }) {
-    this.providerService.createStudent({...newStudent, id: 0});
+    this.providerService.createStudent({...newStudent, id: 0}); // Workaround um neues object zu generieren
   }
 
-  getStudent(id: number): Student | undefined{
+  // 
+  getStudent(id: number): Student | undefined {
     return this.providerService.getStudentById(id);
   }
 

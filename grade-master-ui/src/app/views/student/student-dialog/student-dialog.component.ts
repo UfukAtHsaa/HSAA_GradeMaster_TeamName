@@ -31,6 +31,7 @@ export class StudentDialogComponent {
     private coreService: StudentCoreService
   ) {
 
+    // Erstellen der Formulardaten -> "form" wird dann im template verknüpft
     this.form = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
@@ -39,6 +40,7 @@ export class StudentDialogComponent {
   }
 
   onSubmit() {
+    // Prüfen ob Formular in einem "valid" state is
     if (this.form.valid) {
       // Daten verarbeiten
       const formData = this.form.value;

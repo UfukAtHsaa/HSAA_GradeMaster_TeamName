@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Card } from '../../../../lib/components/card/card.interfaces';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -19,7 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class CourseOverviewComponent {
 
-  cards: Card[] = [ // aus lib
+
+  public cards: Card[] = [ // aus lib
     {
       id: 1,
       title: 'Kurs 1',
@@ -50,7 +51,7 @@ export class CourseOverviewComponent {
     }
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
     public addCard(): void {
       this.cards.push({ // push um hier das hinzufügen und den Aufruf einer "Add"-Methode zu simulieren
@@ -61,6 +62,13 @@ export class CourseOverviewComponent {
         imageUrl: 'https://via.placeholder.com/150'
       });
     }
+
+
+    public addCourse() {
+      // Öffnen einer unabhängigen route, die auf jeder Seite angezeigt werden könnte.
+      this.router.navigate([{ outlets: { dialog: ['dialog'] } }]);
+    }
+
 
 }
 

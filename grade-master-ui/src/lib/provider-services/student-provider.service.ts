@@ -12,11 +12,12 @@ export class StudentProviderService {
   private studentsSubject: BehaviorSubject<Student[]> = new BehaviorSubject<Student[]>([]);
   
   // Observable, das abonniert werden kann, um die aktuelle Student-Liste zu erhalten
+  // Subjects sollten nie driekt rausgegeben werden -> Manipulationsgefahr 
   public students$: Observable<Student[]> = this.studentsSubject.asObservable();
-  
   
   constructor() {
 
+    // Initialisierung im Konstruktor, wäre in "ngOnInit()" ebenfalls möglich
     const initialStudents: Student[] = [
       { id: 1, name: 'Hans', email: 'hans@test.de' },
       { id: 2, name: 'Helmut', email: 'helmut@test.de' },
@@ -39,7 +40,7 @@ export class StudentProviderService {
     console.log('>>> ', student);
 
     const currentStudents = this.studentsSubject.value;
-    const updatedStudents = [...currentStudents, student]; // Neuen Studenten hinzufügen
+    const updatedStudents = [...currentStudents, student]; // Neuen Studenten hinzufügen; Spread-Operator
     this.studentsSubject.next(updatedStudents);
 
     console.log('Aktualisierte Studentenliste:', updatedStudents);

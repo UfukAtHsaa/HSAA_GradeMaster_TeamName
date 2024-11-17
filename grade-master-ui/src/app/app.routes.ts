@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { CourseDialogHandlerComponent } from './views/course/course-dialog/course-dialog-handler/course-dialog-handler.component';
 
 export const routes: Routes = [
   
@@ -10,14 +11,11 @@ export const routes: Routes = [
         ).then((mod) => mod.HomeComponent),
     },
 
-    // ADD AUX ROUTE: Students / Courses
-    // {
-    //     path: '',
-    //     loadComponent: () =>
-    //     import(
-    //         './views/home/home.component'
-    //     ).then((mod) => mod.HomeComponent),
-    // },
+    {
+        path: 'dialog',
+        component: CourseDialogHandlerComponent,
+        outlet: 'dialog',
+    },
 
     {
         path: 'courses',
@@ -78,23 +76,6 @@ export const routes: Routes = [
             },
         ]
     },
-
-    // {
-    //     path: 'list',
-    //     loadComponent: () =>
-    //     import(
-    //         './views/course/course-overview/course-overview.component'
-    //     ).then((mod) => mod.CourseOverviewComponent),
-
-    // },
-    // { 
-    //     path: ':id/details', 
-    //     loadComponent: () =>
-    //         import(
-    //             './views/course/course-detail/course-detail.component'
-    //         ).then((mod) => mod.CourseDetailComponent),
-    // },
-    
     
     {
         path: 'impressum',

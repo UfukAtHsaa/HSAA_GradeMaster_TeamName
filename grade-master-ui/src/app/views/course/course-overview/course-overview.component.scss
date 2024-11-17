@@ -24,13 +24,24 @@ mat-card-actions button:hover {
   background-color: #145a8d; /* Dunklerer Farbton beim Hover */
 }
 
-.add-button {
+.actions-container {
+  display: flex;
+  flex-flow: row;
   position: fixed;
+  align-items: center;
+  gap: 16px;
   bottom: 20px;
   right: 20px;
+}
+
+.add-button {
   z-index: 1000; /* Sicherstellen, dass der Button über anderen Elementen liegt */
   background-color: #1976d2;
   color: white;
+
+  &-dialog {
+    background-color: rgb(204, 0, 255);
+  }
 }
 
 .add-button:hover {
