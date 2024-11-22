@@ -11,6 +11,10 @@ export class StudentCoreService {
   constructor(private providerService: StudentProviderService) { }
 
   getStudents(): Observable<Student[]>  {
+    return this.providerService.getStudents();
+  }
+
+  getAllStudents(): Observable<Student[]>  {
     return this.providerService.getAllStudents();
   }
 

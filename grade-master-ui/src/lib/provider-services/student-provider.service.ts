@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Student } from '../domain/student.interfaces';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class StudentProviderService {
   // Subjects sollten nie driekt rausgegeben werden -> Manipulationsgefahr 
   public students$: Observable<Student[]> = this.studentsSubject.asObservable();
   
-  constructor() {
+  constructor(private http: HttpClient) {
 
     // Initialisierung im Konstruktor, wäre in "ngOnInit()" ebenfalls möglich
     const initialStudents: Student[] = [
@@ -27,6 +28,13 @@ export class StudentProviderService {
     this.studentsSubject.next(initialStudents);
 
    }
+  
+  // HTTP GET Students
+  getStudents(): Observable<Student[]> {
+    
+    const url = 'http://localhost:8080' // url ist der Enpunkt der API
+    return this.http.get<Student[]>(`${url}/students}`);
+  }
 
 
   // GET Students

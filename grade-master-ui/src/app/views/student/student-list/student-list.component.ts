@@ -33,7 +33,11 @@ export class StudentListComponent {
     private router: Router
   ) { 
 
+    // Ruft http auf
     this.dataSource$ = this.studentCoreService.getStudents();
+    
+    // Ruft Mock Object auf
+    // this.dataSource$ = this.studentCoreService.getAllStudents();
   }
   
   public addStudent(): void {
