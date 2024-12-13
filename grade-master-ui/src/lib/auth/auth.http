@@ -1,0 +1,17 @@
+# user1:password
+@user1auth = dXNlcjE6cGFzc3dvcmQ=
+
+# admin1:password
+@admin1auth = YWRtaW4xOnBhc3N3b3Jk
+
+###
+
+# GET-Request für user1
+GET http://localhost:8080/public/v1/basicauth
+Authorization: Basic {{user1auth}}
+
+###
+
+# GET-Request für admin1
+GET http://localhost:8080/public/v1/basicauth
+Authorization: Basic {{admin1auth}}

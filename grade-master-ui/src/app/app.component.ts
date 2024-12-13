@@ -4,10 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterOutlet } from '@angular/router';
-import { of } from 'rxjs';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { MenuBarComponent } from '../lib/components/menu-bar/menu-bar.component';
-import { MenuBarItem } from '../lib/components/menu-bar/menu-bar.interfaces';
+import { AppMenubarViewStateService } from './services/app-menubar-view-state.service';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +19,7 @@ import { MenuBarItem } from '../lib/components/menu-bar/menu-bar.interfaces';
     MatIconModule,
     MatTooltipModule,
     LayoutModule,
+    RouterModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -27,29 +27,6 @@ import { MenuBarItem } from '../lib/components/menu-bar/menu-bar.interfaces';
 export class AppComponent {
   title = 'GRADE MASTER';
 
-  public menuItems: MenuBarItem[] = [
-    {
-      name: 'Kurse',
-      routePath: 'courses',
-      visible: of(true),
-    },    
-    {
-      name: 'Studenten',
-      routePath: 'students',
-      visible: of(true),
-    },
+  public constructor(public menuBarViewState: AppMenubarViewStateService) {}
 
-    {
-      name: 'Impressum',
-      routePath: 'impressum',
-      visible: of(true),
-    },
-    {
-      name: 'Login',
-      routePath: 'login',
-            visible: of(true),
-      highlighted: true,
-      icon: 'login',
-    }, 
-   ]
 }

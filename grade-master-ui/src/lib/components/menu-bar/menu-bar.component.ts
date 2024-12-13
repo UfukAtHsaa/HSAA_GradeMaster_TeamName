@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { MenuBarItem } from './menu-bar.interfaces';
+import { MenubarStateHandler } from './menubar-state-handler';
 
 @Component({
   selector: 'app-menu-bar',
@@ -27,8 +27,9 @@ export class MenuBarComponent {
   // Input() is used to pass data from the parent component to the child component.
   // In this case the data is passed from the app.component.html to the menu-bar.component.html.
   @Input() title: string = '';
-  @Input() menuBarItems: MenuBarItem[] = [];
+  @Input() menuBarViewState!: MenubarStateHandler;
 
+  
   constructor(
     private router: Router, 
     private activatedRoute: ActivatedRoute
