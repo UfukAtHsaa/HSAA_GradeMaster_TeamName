@@ -1,4 +1,4 @@
-# GradMaster
+># GradMaster
 
 Das ist eine Beispiel-README
 
@@ -13,8 +13,9 @@ Das ist eine Beispiel-README
 java ./my.jar
 ```
 
-1. Intelij öffnen
-2. "Play" drücken
+> NICHT SOWAS WIE
+> 1. Intelij öffnen
+> 2. "Play" drücken
 
 ### Ausführung Frontend
 
