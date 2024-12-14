@@ -13,7 +13,7 @@ Das ist eine Beispiel-README
 java ./my.jar
 ```
 
-> NICHT SOWAS WIE
+> !!! NICHT SOWAS WIE !!!
 > 1. Intelij öffnen
 > 2. "Play" drücken
 
