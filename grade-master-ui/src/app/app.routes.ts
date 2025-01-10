@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { CourseDialogHandlerComponent } from './views/course/course-dialog/course-dialog-handler/course-dialog-handler.component';
 import { authGuard } from '../lib/auth/auth.guard';
+import { CourseDialogHandlerComponent } from './views/course/course-dialog/course-dialog-handler/course-dialog-handler.component';
 
 
 export const routes: Routes = [

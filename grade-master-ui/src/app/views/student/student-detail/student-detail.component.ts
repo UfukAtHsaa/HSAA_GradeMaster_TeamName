@@ -27,11 +27,12 @@ export class StudentDetailComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
+
     if (id) {
       // Eine Möglichkeit die Filterung nach Student-Id direkt in der detail-component vorzunehmen.
       // Eine andere Möglichkeit wäre das Ganze über den Core-Service bis in den Provider-Service zu geben.
       // Hier würde dann die Filterung über die REST-API gehen.
-      this.coreService.getStudents().subscribe((students) => {
+      this.coreService.students$.subscribe((students) => { // Benutzt das BehaviorSubject um die Studentenliste zu filtern
         this.student = students.find((student) => student.id === +id);
       });
     }

@@ -34,6 +34,7 @@ export class StudentDialogComponent {
     // Erstellen der Formulardaten -> "form" wird dann im template verknüpft
     this.form = this.fb.group({
       name: ['', Validators.required],
+      matrikelnummer: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
     });
   
@@ -44,10 +45,7 @@ export class StudentDialogComponent {
     if (this.form.valid) {
       // Daten verarbeiten
       const formData = this.form.value;
-      console.log('Formulardaten verarbeitet:', formData);
-
-      this.coreService.addStudent(formData);
-
+      this.coreService.createStudent(formData);
       // Dialog schließen und Daten zurückgeben
       this.dialogRef.close(formData);
     } else {

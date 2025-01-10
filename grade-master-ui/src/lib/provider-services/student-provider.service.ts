@@ -1,63 +1,42 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { Student } from '../domain/student.interfaces';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentProviderService {
 
-  
-  // Internes BehaviorSubject zum Verwalten der Student-Liste
-  private studentsSubject: BehaviorSubject<Student[]> = new BehaviorSubject<Student[]>([]);
-  
-  // Observable, das abonniert werden kann, um die aktuelle Student-Liste zu erhalten
-  // Subjects sollten nie driekt rausgegeben werden -> Manipulationsgefahr 
-  public students$: Observable<Student[]> = this.studentsSubject.asObservable();
-  
-  constructor(private http: HttpClient) {
+  private baseUrl = 'http://localhost:8080' // url ist der Enpunkt der API
 
-    // Initialisierung im Konstruktor, wäre in "ngOnInit()" ebenfalls möglich
-    const initialStudents: Student[] = [
-      { id: 1, name: 'Hans', email: 'hans@test.de' },
-      { id: 2, name: 'Helmut', email: 'helmut@test.de' },
-      { id: 3, name: 'Friedrich', email: 'friedrich@test.de' },
-      { id: 4, name: 'Josef', email: 'josef@test.de' },
-    ];
-    this.studentsSubject.next(initialStudents);
-
-   }
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+  ) { }
   
-  // HTTP GET Students
-  getStudents(): Observable<Student[]> {
-    
-    const url = 'http://localhost:8080' // url ist der Enpunkt der API
-    return this.http.get<Student[]>(`${url}/students}`);
+  /**
+   * Returns all students via REST interface.
+   * HTTP GET  
+   **/
+  public getStudents(): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.baseUrl}/public/api/students`);
   }
 
+  /**
+   * Creates a new student via REST interface.
+   * HTTP POST
+   * @param student, object which will be created 
+   */
+  public createStudent(student: Student): Observable<Student> {
 
-  // GET Students
-  public getAllStudents(): Observable<Student[]> {
-    return this.students$;
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${this.authService.getToken()}`, // Basic Auth Header
+      'Content-Type': 'application/json' // Optional, wenn Sie JSON senden
+    });
+
+    return this.http.post<Student>(`${this.baseUrl}/private/api/students`, student, { headers })
   }
-
-  // POST Student
-  public createStudent(student: Student): void {
-
-    console.log('>>> ', student);
-
-    const currentStudents = this.studentsSubject.value;
-    const updatedStudents = [...currentStudents, student]; // Neuen Studenten hinzufügen; Spread-Operator
-    this.studentsSubject.next(updatedStudents);
-
-    console.log('Aktualisierte Studentenliste:', updatedStudents);
-  }
-
-  public getStudentById(id: number): Student | undefined {
-    const currentStudents = this.studentsSubject.getValue(); // Holt aktuelle Liste
-    return currentStudents.find(student => student.id === id); // Filtert nach ID
-  }
-
 
 }
